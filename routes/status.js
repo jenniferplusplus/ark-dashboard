@@ -1,15 +1,15 @@
 var express = require('express');
 var router = express.Router();
 var config = require('../config.json');
-var proc = require('child_process');
-var s3 = require('steam-server-status');
+var service = require('../bin/svcUpstart.js');
+var steamSvc = require('../bin/steam.js');
 var Q = require('q');
 var assign = require('object-assign');
 
 /* GET status. */
 router.get('/', function (req, res, next) {
-  var svc = serviceStatus();
-  var steam = steamStatus();
+  var svc = service.serviceStatus();
+  var steam = steamSvc.steamStatus();
   Q.all([svc, steam])
     .spread(function cbStatus(svc, steam) {
       var resSvc = {};
@@ -36,15 +36,6 @@ router.get('/', function (req, res, next) {
       res.send(result);
     })
     .catch(next);
-});
-
-var serviceStatus = Q.promised(function () {
-  return Q.nfcall(proc.exec, 'service ' + config.svcName + ' status');
-  //proc.exec('service ' + config.svcName + ' status', callback);
-});
-
-var steamStatus = Q.promised(function () {
-  return Q.nfcall(s3.getServerStatus, config.address, 27015);
 });
 
 module.exports = router;

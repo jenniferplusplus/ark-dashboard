@@ -13,6 +13,11 @@
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0",
-    "object-assign": "~4.0.1"
+    "object-assign": "~4.0.1",
+    "steam-server-status": "~1.0.2",
+    "q": "~1.4.1"
+  },
+  "devDependencies": {
+    "jasmine": "~2.4.1"
   }
 }
