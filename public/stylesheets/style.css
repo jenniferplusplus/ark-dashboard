@@ -6,3 +6,13 @@ body {
 a {
   color: #00B7FF;
 }
+
+label {
+  color: pink;
+  float: left;
+  padding-right: 0.25em
+}
+
+#data label {
+  width: 8em
+}

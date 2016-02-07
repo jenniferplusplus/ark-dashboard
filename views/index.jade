@@ -2,4 +2,28 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  div#data
+    div#status
+      label Server Status
+      p Unknown
+    div#name
+      label Server Name
+      p Unknown
+    div#players
+      label Players Online
+      p Unknown
+  div
+    button#refresh Refresh Status
+  div#control
+    p.
+      You can start the server on demand. Just log off when you're done.
+      The game server will shutdown automatically shortly after there are no connected players.
+    p.
+      The server will automatically update when it starts.
+      This can take a while, so you should start the server before starting your game client.
+    span
+      label password:
+      input#password(type="password")
+    div
+      button#start Start Server
+      button#restart(title="Do this to get the latest patch") Restart Server

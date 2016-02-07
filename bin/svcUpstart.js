@@ -1,5 +1,6 @@
 var proc = require('child_process');
 var config = require('../config.json');
+var Q = require('q');
 
 module.exports = {
   serviceStatus: Q.promised(function () {

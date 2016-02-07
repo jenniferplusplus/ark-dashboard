@@ -7,6 +7,7 @@ var crypto = require('crypto');
 
 function sessionManager(req, res, next){
   if(req.session.authKey){
+    next();
     return;
   }
   var hash = crypto.createHash(config.hashAlgorithm);
@@ -31,7 +32,7 @@ router.use(session({
   cookie: {maxAge: 600 * 1000}
 }));
 
-router.any(/.*/, sessionManager);
+router.all(/.*/, sessionManager);
 
 router.post('/start', sessionAuth);
 router.post('/restart', sessionAuth);
