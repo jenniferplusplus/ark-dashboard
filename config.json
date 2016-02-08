@@ -1,4 +1,9 @@
 {
   "svcName": "ark-dedicated",
-  "address": "localhost"
+  "address": "localhost",
+  "passphrase": "forbid book silence within",
+  "passkey": "toolboxgaming",
+  "hashAlgorithm": "sha1",
+  "basePath": "",
+  "title": "Toolbox: Ark Monitor"
 }

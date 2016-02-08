@@ -26,4 +26,11 @@ block content
       input#password(type="password")
     div
       button#start Start Server
-      button#restart(title="Do this to get the latest patch") Restart Server
+      button#restart(title="Do this if the server needs to be patched") Restart Server
+
+  script(src= basepath + "/js/handlers.js")
+  //script(src= basepath + "/public/js/init.js")
+  script.
+    var basepath = "#{basepath}";
+  script.
+    getStatus();

@@ -29,7 +29,9 @@ function sessionAuth(req, res, next){
 router.use(session({
   secret: config.passkey,
   unset: 'destroy',
-  cookie: {maxAge: 600 * 1000}
+  resave: false,
+  saveUninitialized: false,
+  cookie: {maxAge: 600 * 1000, httpOnly: false}
 }));
 
 router.all(/.*/, sessionManager);

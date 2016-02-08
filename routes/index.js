@@ -4,7 +4,7 @@ var config = require('../config.json');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: config.title });
+  res.render('index', { title: config.title, basepath: config.basePath });
 });
 
 module.exports = router;
