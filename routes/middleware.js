@@ -17,7 +17,7 @@ function sessionManager(req, res, next){
 }
 
 function sessionAuth(req, res, next){
-  var reqAuth = JSON.parse(req.body).authKey;
+  var reqAuth = req.body.authKey;
   if(reqAuth === req.session.authKey){
     next();
   }

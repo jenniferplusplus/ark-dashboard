@@ -25,8 +25,8 @@ block content
       label password:
       input#password(type="password")
     div
-      button#start Start Server
-      button#restart(title="Do this if the server needs to be patched") Restart Server
+      button#start(onclick="postRestart('start')") Start Server
+      button#restart(title="Do this if the server needs to be patched" onclick="postRestart('restart')") Restart Server
 
   script(src= basepath + "/js/handlers.js")
   //script(src= basepath + "/public/js/init.js")
@@ -34,3 +34,4 @@ block content
     var basepath = "#{basepath}";
   script.
     getStatus();
+  script(src= basepath + '/js/sha1-min.js')

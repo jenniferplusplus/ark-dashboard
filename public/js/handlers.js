@@ -31,5 +31,13 @@ function getStatus(){
 }
 
 function postRestart(endpoint){
-  var xhr = XMLHttpRequest();
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', basepath + '/' + endpoint);
+  xhr.setRequestHeader('content-type', 'application/json');
+  var cookie = document.cookie;
+  var sid = cookie.slice(cookie.indexOf('connect.sid='));
+  sid = sid.slice(0, sid.indexOf(';'));
+  var password = document.getElementById('password').value;
+  var payload = hex_sha1(sid + password);
+  xhr.send(JSON.stringify({authKey:payload}));
 }
