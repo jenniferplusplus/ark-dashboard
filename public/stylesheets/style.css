@@ -8,11 +8,13 @@ a {
 }
 
 label {
-  color: pink;
   float: left;
-  padding-right: 0.25em
+  margin-right: 1em;
+  width: 7em;
 }
 
 #data label {
-  width: 8em
+  border-bottom-color: darkgray;
+  border-bottom-width: 3px;
+  border-bottom-style: outset;
 }
