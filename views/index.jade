@@ -28,10 +28,10 @@ block content
       button#start(onclick="postRestart('start')") Start Server
       button#restart(title="Do this if the server needs to be patched" onclick="postRestart('restart')") Restart Server
 
-  script(src= basepath + "/js/handlers.js")
+  script(src= basePath + "/js/handlers.js")
   //script(src= basepath + "/public/js/init.js")
   script.
-    var basepath = "#{basepath}";
+    var basepath = "#{basePath}";
   script.
     getStatus();
-  script(src= basepath + '/js/sha1-min.js')
+  script(src= basePath + '/js/sha1-min.js')

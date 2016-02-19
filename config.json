@@ -2,8 +2,8 @@
   "svcName": "",
   "address": "localhost",
   "passphrase": "",
-  "passkey": "",
+  "passkey": "this is a secret",
   "hashAlgorithm": "sha1",
-  "basePath": "",
-  "title": ""
+  "basePath": "/ark",
+  "title": "Your Page Title Here"
 }
