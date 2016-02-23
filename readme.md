@@ -61,21 +61,17 @@ server {
     listen 80;
     server_name yourgameserver.com
     location / {
-        # Seriously, read up on how to do this.
-    }
-    location /ark {
-        index               /ark/public;
-    }
-    location /ark/public {
-        root                path/to/app/public;
-        index               index.html;
-        try_files           $uri $uri.html $uri/ =404;
-    }
-    location /ark/* {
-        proxy_pass          http://127.0.0.1:3000/;
-        proxy_set_header    X-Real-IP  $remote_addr;
-        proxy_redirect off;
-    }
+        #
+        # Seriously, read up on this
+        #
+        location /ark {
+          alias		    /path/to/ark-dashboard/public/;
+          try_files		$uri $uri/index.html @backend;
+        }
+      }
+      location @backend {
+        proxy_pass		http://127.0.0.1:3000;
+      }
 }
 ```
 
@@ -87,18 +83,15 @@ This config is also terrible.
 server {
     listen 80;
     server_name ark.yourgameserver.com
+    root /path/to/ark-dashboard/public
     location / {
-        index               /ark/public;
-    }
-    location /public {
-        root                path/to/app/public;
-        index               index.html;
-        try_files           $uri $uri.html $uri/ =404;
-    }
-    location /* {
-        proxy_pass          http://127.0.0.1:3000/;
-        proxy_set_header    X-Real-IP  $remote_addr;
-        proxy_redirect off;
-    }
+        #
+        # Seriously, read up on this
+        #
+        try_files		$uri $uri/index.html @backend;
+      }
+      location @backend {
+        proxy_pass		http://127.0.0.1:3000;
+      }
 }
 ```
