@@ -60,6 +60,9 @@ This config is terrible and you should read up on how to configure Nginx. But it
 server {
     listen 80;
     server_name yourgameserver.com
+    #
+    # Don't forget to set a root
+    #
     location / {
         #
         # Seriously, read up on this
