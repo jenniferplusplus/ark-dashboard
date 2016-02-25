@@ -10,8 +10,10 @@ var assign = require('object-assign');
 router.get('/', function (req, res, next) {
   var svc = service.serviceStatus();
   var steam = steamSvc.steamStatus();
-  Q.all([svc, steam])
-    .spread(function cbStatus(svc, steam) {
+  Q.allSettled([svc, steam])
+    .spread(function cbStatus(svcSnap, steamSnap) {
+      var svc = svcSnap.value || svcSnap.reason;
+      var steam = steamSnap.value || steamSnap.reason;
       var resSvc = {};
       var status = svc.match(/ [\w\/]*/)[0];
       switch (status) {
