@@ -3,17 +3,17 @@ extends layout
 block content
   h1= title
   div#data
-    div#status
+    div#container-status
       label Server Status
-      p Unknown
-    div#name
+      p#status Unknown
+    div#container-name
       label Server Name
-      p Unknown
-    div#players
+      p#name Unknown
+    div#container-players
       label Players Online
-      p Unknown
+      p#players Unknown
   div
-    button#refresh Refresh Status
+    button#refresh(onclick="getStatus()") Refresh Status
   div#control
     p.
       You can start the server on demand. Just log off when you're done.

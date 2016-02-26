@@ -1,8 +1,8 @@
 function getStatus(){
   var xhr = new XMLHttpRequest();
   xhr.open('GET', basepath + '/status');
-  xhr.onreadystatechange = function (state){
-    switch (state){
+  xhr.onreadystatechange = function (){
+    switch (xhr.readyState){
       case 0: //UNSENT
             break;
       case 1: //OPENED
@@ -12,16 +12,21 @@ function getStatus(){
       case 3: //LOADING
             break;
       case 4: //DONE
-        if(xhr.response.error){
+        var status = document.getElementById('status');
+        var name = document.getElementById('name');
+        var players = document.getElementById('players');
+        if(xhr.response.error || !xhr.response.status){
           console.error(xhr.response);
-          document.getElementById('status').getElementsByTagName('p').text = 'error';
-          document.getElementById('name').getElementsByTagName('p').text = 'error';
-          document.getElementById('players').getElementsByTagName('p').text = 'error';
+          status.innerText = 'error';
+          name.innerText = 'error';
+          players.innerText = 'error';
           return;
         }
-        document.getElementById('status').getElementsByTagName('p').text = xhr.response.status;
-        document.getElementById('name').getElementsByTagName('p').text = xhr.response.serverName;
-        document.getElementById('players').getElementsByTagName('p').text = xhr.response.numberOfPlayers;
+        else {
+          status.innerText = xhr.response.status;
+          name.innerText = xhr.response.serverName;
+          players.innerText = xhr.response.numberOfPlayers;
+        }
         break;
       default: //ERROR
             break;
