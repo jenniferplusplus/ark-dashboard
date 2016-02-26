@@ -12,20 +12,15 @@ function getStatus(){
       case 3: //LOADING
             break;
       case 4: //DONE
+        var response = JSON.parse(xhr.response);
         var status = document.getElementById('status');
         var name = document.getElementById('name');
         var players = document.getElementById('players');
-        if(xhr.response.error || !xhr.response.status){
-          console.error(xhr.response);
-          status.innerText = 'error';
-          name.innerText = 'error';
-          players.innerText = 'error';
-          return;
-        }
-        else {
-          status.innerText = xhr.response.status;
-          name.innerText = xhr.response.serverName;
-          players.innerText = xhr.response.numberOfPlayers;
+        status.innerText  = response.status          || 'error';
+        name.innerText    = response.serverName      || 'error';
+        players.innerText = response.numberOfPlayers || 'error';
+        if(response.error){
+          console.log(response.error);
         }
         break;
       default: //ERROR
@@ -40,8 +35,9 @@ function postRestart(endpoint){
   xhr.open('POST', basepath + '/' + endpoint);
   xhr.setRequestHeader('content-type', 'application/json');
   var cookie = document.cookie;
-  var sid = cookie.slice(cookie.indexOf('connect.sid='));
-  sid = sid.slice(0, sid.indexOf(';'));
+  var cookieName = 'connect.sid=s%3A';
+  var sid = cookie.slice(cookie.indexOf(cookieName) + cookieName.length);
+  sid = sid.slice(0, sid.indexOf('.'));
   var password = document.getElementById('password').value;
   var payload = hex_sha1(sid + password);
   xhr.send(JSON.stringify({authKey:payload}));

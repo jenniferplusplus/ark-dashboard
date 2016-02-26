@@ -12,8 +12,8 @@ router.get('/', function (req, res, next) {
   var steam = steamSvc.steamStatus();
   Q.allSettled([svc, steam])
     .spread(function cbStatus(svcSnap, steamSnap) {
-      var svc = svcSnap.value || svcSnap.reason;
-      var steam = steamSnap.value || steamSnap.reason;
+      var svc = svcSnap.value || svcSnap.reason.message;
+      var steam = steamSnap.value || steamSnap.reason.message;
       var resSvc = {};
       var status = svc.match(/ [\w\/]*/)[0];
       switch (status) {
@@ -35,7 +35,7 @@ router.get('/', function (req, res, next) {
       }
 
       var result = assign(resSvc, steam);
-      res.send(result);
+      res.json(result);
     })
     .catch(next);
 });
