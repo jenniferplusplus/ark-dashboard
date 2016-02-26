@@ -10,13 +10,13 @@ module.exports = {
         });
   }),
   serviceStart: Q.promised(function () {
-    return Q.nfcall(proc.exec, 'service ' + config.svcName + ' start')
+    return Q.nfcall(proc.exec, 'sudo service ' + config.svcName + ' start')
       .then(function (val) {
         return val[0];
       });
   }),
   serviceStop: Q.promised(function () {
-    return Q.nfcall(proc.exec, 'service ' + config.svcName + ' stop')
+    return Q.nfcall(proc.exec, 'sudo service ' + config.svcName + ' stop')
       .then(function (val) {
         return val[0];
       });
