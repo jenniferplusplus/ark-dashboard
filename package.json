@@ -17,7 +17,8 @@
     "object-assign": "~4.0.1",
     "steam-server-status": "~1.0.2",
     "q": "~1.4.1",
-    "express-session": "~1.13.0"
+    "express-session": "~1.13.0",
+    "child-process-promise": "~1.1.0"
   },
   "devDependencies": {
     "jasmine": "~2.4.1"

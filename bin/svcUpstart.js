@@ -1,24 +1,16 @@
 var proc = require('child_process');
 var config = require('../config.json');
 var Q = require('q');
+var exec = require('child-process-promise').exec;
 
 module.exports = {
   serviceStatus: Q.promised(function () {
-    return Q.nfcall(proc.exec, 'service ' + config.svcName + ' status')
-      .then(function (val) {
-        return val[0];
-        });
+    return exec('service ' + config.svcName + ' status');
   }),
   serviceStart: Q.promised(function () {
-    return Q.nfcall(proc.exec, 'sudo service ' + config.svcName + ' start')
-      .then(function (val) {
-        return val[0];
-      });
+    return exec('sudo service ' + config.svcName + ' start');
   }),
   serviceStop: Q.promised(function () {
-    return Q.nfcall(proc.exec, 'sudo service ' + config.svcName + ' stop')
-      .then(function (val) {
-        return val[0];
-      });
+    return exec('sudo service ' + config.svcName + ' stop');
   })
 };
