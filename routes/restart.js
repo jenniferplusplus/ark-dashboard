@@ -16,7 +16,7 @@ router.post('/', function (req, res, next) {
       var resSvc = {};
       var status = svc.match(/ ([\w\/]*)/)[1];
       switch (status) {
-        case 'stopped/waiting':
+        case 'stop/waiting':
           resSvc.status = 'stopped';
           break;
         case 'start/running':
