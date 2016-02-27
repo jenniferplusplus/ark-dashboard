@@ -7,7 +7,7 @@ module.exports = {
   serviceStatus: Q.promised(function () {
     return exec('service ' + config.svcName + ' status')
       .then(function cbStatus(val) {
-          var result = val.stdout + val.stderr;
+          return val.stdout + val.stderr;
         });
   }),
   serviceStart: Q.promised(function () {
