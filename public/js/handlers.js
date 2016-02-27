@@ -16,9 +16,9 @@ function getStatus(){
         var status = document.getElementById('status');
         var name = document.getElementById('name');
         var players = document.getElementById('players');
-        status.innerText  = response.status          || 'error';
-        name.innerText    = response.serverName      || 'error';
-        players.innerText = response.numberOfPlayers || 'error';
+        status.innerHTML  = response.status          || 'error';
+        name.innerHTML    = response.serverName      || 'error';
+        players.innerHTML = response.numberOfPlayers || 'error';
         if(response.error){
           console.log(response.error);
         }
