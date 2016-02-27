@@ -2,6 +2,7 @@ var proc = require('child_process');
 var config = require('../config.json');
 var Q = require('q');
 var exec = require('child-process-promise').exec;
+var spawn = require('child-process-promise').spawn;
 
 module.exports = {
   serviceStatus: Q.promised(function () {
@@ -11,9 +12,12 @@ module.exports = {
         });
   }),
   serviceStart: Q.promised(function () {
-    return exec('sudo service ' + config.svcName + ' start');
+    return spawn('service', [config.svcName, 'start']);
   }),
   serviceStop: Q.promised(function () {
-    return exec('sudo service ' + config.svcName + ' stop');
+    return spawn('service', [config.svcName, 'stop']);
+  }),
+  serviceRestart: Q.promised(function () {
+    return spawn('service', [config.svcName, 'restart']);
   })
 };

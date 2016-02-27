@@ -41,8 +41,7 @@ router.post('/', function (req, res, next) {
         res.set(400).send('The server cannot be restarted while there are players connected. If a restart is needed you should coordinate with the other players.');
       }
       else{
-        service.serviceStop()
-          .then(service.serviceStart)
+        service.serviceRestart()
           .timeout(5000, '')
           .then(function cbStart(result){
             res.send(result);
