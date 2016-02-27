@@ -5,7 +5,10 @@ var exec = require('child-process-promise').exec;
 
 module.exports = {
   serviceStatus: Q.promised(function () {
-    return exec('service ' + config.svcName + ' status');
+    return exec('service ' + config.svcName + ' status')
+      .then(function cbStatus(val) {
+          var result = val.stdout + val.stderr;
+        });
   }),
   serviceStart: Q.promised(function () {
     return exec('sudo service ' + config.svcName + ' start');

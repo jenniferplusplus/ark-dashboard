@@ -7,13 +7,15 @@ var assign = require('object-assign');
 
 /* POST status. */
 router.post('/', function (req, res, next) {
-  var status = service.serviceStatus();
+  var svc = service.serviceStatus();
   var steam = steamSvc.steamStatus();
-  Q.all([status, steam])
-    .spread(function cbStatus(status, steam) {
+  Q.allSettled([svc, steam])
+    .spread(function cbStatus(svcSnap, steamSnap) {
+      var svc = svcSnap.value || svcSnap.reason.message;
+      var steam = steamSnap.value || steamSnap.reason.message;
       var resSvc = {};
-      var stat = status.match(/ [\w\/]*/)[0];
-      switch (stat) {
+      var status = svc.match(/ ([\w\/]*)/)[1];
+      switch (status) {
         case 'stopped/waiting':
           resSvc.status = 'stopped';
           break;
@@ -31,7 +33,8 @@ router.post('/', function (req, res, next) {
           break;
       }
 
-      return assign(resSvc, steam);
+      var result = assign(resSvc, steam);
+      return result;
     })
     .then(function cbRestart(result){
       if(!result.error && result.numberOfPlayers > 0){

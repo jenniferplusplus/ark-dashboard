@@ -15,7 +15,7 @@ router.get('/', function (req, res, next) {
       var svc = svcSnap.value || svcSnap.reason.message;
       var steam = steamSnap.value || steamSnap.reason.message;
       var resSvc = {};
-      var status = svc.match(/ [\w\/]*/)[0];
+      var status = svc.match(/ ([\w\/]*)/)[1];
       switch (status) {
         case 'stopped/waiting':
           resSvc.status = 'stopped';
