@@ -16,7 +16,7 @@ router.get('/', function (req, res, next) {
       var steam = steamSnap.value || steamSnap.reason.message;
       var resSvc = {};
       //Ex: 'arkd start/running, process 1234'
-      var status = svc.split(' ')[1].replace(',','');
+      var status = svc.split(' ')[1].replace(/[,\n]/g, '');
       switch (status) {
         case 'stop/waiting':
           resSvc.status = 'stopped';
