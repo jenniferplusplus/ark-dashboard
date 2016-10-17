@@ -1,3 +1,6 @@
+// TODO: refactor status to be like arkmanager
+// Don't use until that's done
+
 var proc = require('child_process');
 var config = require('../config.json');
 var Q = require('q');

@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var config = require('../config.json');
-var service = require('../bin/svcUpstart.js');
 var assign = require('object-assign');
+
+var svcName = 'svc' + config.svcName + 'js';
+var service = require('../bin/' + svcName);
 
 /* POST status. */
 router.post('/', function (req, res, next) {

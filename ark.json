@@ -1,0 +1,20 @@
+{
+  "version": "49",
+  "serverName": "toolbox - (v218.3)",
+  "map": "TheIsland",
+  "gameDirectory": "ark_survival_evolved",
+  "gameName": "ark_survival_evolved",
+  "gameDescription": "ARK: Survival Evolved",
+  "applicationId": 0,
+  "numberOfPlayers": 2,
+  "maxNumberOfPlayers": 70,
+  "numberOfBots": 0,
+  "dedicatedServer": true,
+  "operatingSystem": "l",
+  "passwordRequired": true,
+  "secure": true,
+  "gameVersion": "1.0.0.0",
+  "connectUrl": "steam://connect/192.99.43.7:27015/undefined",
+  "hostname": "192.99.43.7",
+  "port": 27015
+}
