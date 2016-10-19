@@ -10,23 +10,26 @@ module.exports = {
   serviceRestart: Q.promised(execRestart)
 };
 
+var manager = config.server.serverManagerPath + 'arkmanager';
+var instance = config.server.serviceName;
+
 function execStatus() {
-  return exec('arkmanager ' + config.svcName + ' status @main')
+  return exec(manager + ' status ' + instance)
   // AST returns non-zero when a server is running
   // Sane programs interpret this as an error, but it's not
-    .then(cbstatus, cbstatus);
+    .then(cbStatus, cbStatus);
 }
 
 function execStart() {
-  return spawn('arkmanager', [config.svcName, 'start', '@main']);
+  return spawn(manager, ['start', instance]);
 }
 
 function execStop() {
-  return spawn('arkmanager', [config.svcName, 'stop', '@main']);
+  return spawn(manager, ['stop', instance]);
 }
 
 function execRestart() {
-  return spawn('arkmanager', [config.svcName, 'restart', '@main']);
+  return spawn(manager, ['restart', instance]);
 }
 
 function cbStatus(val) {

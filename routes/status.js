@@ -4,16 +4,18 @@ var config = require('../config.json');
 var Q = require('q');
 var assign = require('object-assign');
 
-var svcName = 'svc' + config.svcName + 'js';
-var service = require('../bin/' + svcName);
+var service = require('../bin/' + config.serviceName);
 
 /* GET status. */
 router.get('/', function (req, res, next) {
-  var svc = service.serviceStatus();
-  svc.then(function respond(status){
-    return res.json(status);
-  })
+  return service.serviceStatus()
+    .timeout(5000, 'Status timed out')
+    .then(respond)
     .catch(next);
+
+  function respond(status) {
+    return res.json(status);
+  }
 });
 
 module.exports = router;

@@ -1,36 +1,32 @@
 var express = require('express');
 var router = express.Router();
 var config = require('../config.json');
-var service = require('../bin/upstart.js');
-var steamSvc = require('../bin/steam.js');
 var assign = require('object-assign');
 
-var svcName = 'svc' + config.svcName + 'js';
-var service = require('../bin/' + svcName);
+var service = require('../bin/' + config.serviceName);
 
 /* POST status. */
 router.post('/', function (req, res, next) {
-  var svc = service.serviceStatus();
-  svc.then(function cbRestart(result) {
-    if (!result.error && (+result.numberOfPlayers) > 0) {
-      res.set(400).send('The server cannot be restarted while there are players connected. If a restart is needed you should coordinate with the other players.');
+  return service.serviceStatus()
+    .then(thenRestart)
+    .then(thenRespond)
+    .catch(next);
+
+  function thenRestart(status) {
+    if ((+status.numberOfPlayers) > 0) {
+      res.set(400);
+      return 'The server cannot be restarted while there are players connected. If a restart is needed you should coordinate with the other players.';
     }
     else {
-      service.serviceRestart()
-        .timeout(5000, '')
-        .then(function cbStart(result) {
-          res.send(result);
-        }, function ebStart(result) {
-          if (result === '') {
-            res.send();
-          }
-          else {
-            next(result);
-          }
-        });
+      return service.serviceRestart()
+        .timeout(5000, 'Restart timed out');
     }
-  })
-    .catch(next);
+  }
+
+  function thenRespond(result) {
+    res.send(result);
+  }
+
 });
 
 module.exports = router;
