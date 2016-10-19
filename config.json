@@ -1,10 +1,15 @@
 {
-  "svcName": "",
-  "address": "localhost",
-  "passphrase": "",
-  "passkey": "this is a secret",
-  "hashAlgorithm": "sha1",
-  "basePath": "/ark",
-  "title": "Your Page Title Here",
-  "service": "arkmanager"
+  "server": {
+    "serviceName": "",
+    "serviceManager": "ark-server-tools",
+    "serviceManagerPath": "/usr/local/bin/"
+  },
+  "client": {
+    "address": "localhost",
+    "hashAlgorithm": "sha1",
+    "basePath": "/ark",
+    "title": "Your Page Title Here",
+    "passphrase": "",
+    "passkey": "this is a secret",
+  }
 }
