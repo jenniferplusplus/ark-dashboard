@@ -3,9 +3,9 @@ var router = express.Router();
 var config = require('../config.json');
 var assign = require('object-assign');
 
-var service = require('../bin/' + config.serviceName);
+var service = require('../services/' + config.server.serviceManager);
 
-/* POST status. */
+/* POST restart. */
 router.post('/', function (req, res, next) {
   return service.serviceStatus()
     .then(thenRestart)

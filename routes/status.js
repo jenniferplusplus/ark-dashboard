@@ -4,7 +4,7 @@ var config = require('../config.json');
 var Q = require('q');
 var assign = require('object-assign');
 
-var service = require('../bin/' + config.serviceName);
+var service = require('../services/' + config.server.serviceManager);
 
 /* GET status. */
 router.get('/', function (req, res, next) {
