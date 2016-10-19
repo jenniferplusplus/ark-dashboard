@@ -11,7 +11,7 @@ module.exports = {
   serviceRestart: Q.promised(execRestart)
 };
 
-var manager = config.server.serverManagerPath + 'arkmanager';
+var manager = config.server.serviceManagerPath + 'arkmanager';
 var instance = config.server.serviceName;
 
 function execStatus() {
