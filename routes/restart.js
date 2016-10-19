@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var config = require('../config.json');
-var service = require('../bin/svcUpstart.js');
+var service = require('../bin/upstart.js');
 var steamSvc = require('../bin/steam.js');
 var assign = require('object-assign');
 

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "static": "./node_modules/.bin/jade views/index.jade --out public/ --obj config.json"
+    "init": "cp init/config.json config.json"
   },
   "dependencies": {
     "body-parser": "~1.13.3",

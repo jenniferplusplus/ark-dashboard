@@ -10,6 +10,6 @@
     "basePath": "/ark",
     "title": "Your Page Title Here",
     "passphrase": "",
-    "passkey": "this is a secret",
+    "passkey": "this is a secret"
   }
 }
