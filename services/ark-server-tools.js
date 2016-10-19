@@ -2,6 +2,7 @@ var config = require('../config.json');
 var Q = require('q');
 var exec = require('child-process-promise').exec;
 var spawn = require('child-process-promise').spawn;
+var strip = require('stripcolorcodes');
 
 module.exports = {
   serviceStatus: Q.promised(execStatus),
@@ -33,7 +34,7 @@ function execRestart() {
 }
 
 function cbStatus(val) {
-  var output = val.stdout;
+  var output = strip(val.stdout);
   var status = {};
 
   var isRunning = /Server running:\s*(Yes|No)/gm.exec(output)[1] === 'Yes';
