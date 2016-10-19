@@ -4,7 +4,7 @@
     "serviceManager": "ark-server-tools",
     "serviceManagerPath": "/usr/local/bin/"
   },
-  "client": {
+  "ui": {
     "address": "localhost",
     "hashAlgorithm": "sha1",
     "basePath": "/ark",

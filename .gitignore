@@ -82,3 +82,6 @@ crashlytics-build.properties
 /stopped
 
 /config.json
+
+#Rendered views
+public/*.html

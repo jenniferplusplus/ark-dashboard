@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  h1= title
+  h1= ui.title
   div#data
     div#container-status
       label Server Status
@@ -28,10 +28,10 @@ block content
       button#start(onclick="postRestart('start')") Start Server
       button#restart(title="Do this if the server needs to be patched" onclick="postRestart('restart')") Restart Server
 
-  script(src= basePath + "/js/handlers.js")
+  script(src= ui.basePath + "/js/handlers.js")
   //script(src= basepath + "/public/js/init.js")
   script.
-    var basepath = "#{basePath}";
+    var basepath = "#{ui.basePath}";
   script.
     getStatus();
-  script(src= basePath + '/js/sha1-min.js')
+  script(src= ui.basePath + '/js/sha1-min.js')
