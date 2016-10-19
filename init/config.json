@@ -6,10 +6,12 @@
   },
   "ui": {
     "address": "localhost",
-    "hashAlgorithm": "sha1",
     "basePath": "/ark",
-    "title": "Your Page Title Here",
+    "title": "Your Page Title Here"
+  },
+  "security": {
+    "sessionKey": "this is a secret",
     "passphrase": "",
-    "passkey": "this is a secret"
+    "hashAlgorithm": "sha1"
   }
 }

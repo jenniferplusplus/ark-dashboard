@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var basepath = require('./config.json').basePath || '/';
+var basepath = require('./config.json').ui.basePath || '/';
 
 var routes = require('./routes/index');
 var status = require('./routes/status');
@@ -46,10 +46,7 @@ if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     console.error(err.message);
     res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
+    res.json(err);
   });
 }
 
@@ -58,10 +55,7 @@ if (app.get('env') === 'development') {
 app.use(function(err, req, res, next) {
   console.error(err.messagge);
   res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+  res.send(err.message);
 });
 
 
