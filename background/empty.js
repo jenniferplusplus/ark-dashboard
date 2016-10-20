@@ -11,7 +11,7 @@ module.exports = function stopOnEmpty() {
     return;
   }
 
-  service.status()
+  service.serviceStatus()
     .then(function parseStatus(status){
       if(status.status === 'running'){
         if((+status.numberOfPlayers) < 1){
