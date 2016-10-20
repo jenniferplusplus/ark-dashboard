@@ -64,6 +64,6 @@ app.use(function(err, req, res, next) {
   res.send(err.message);
 });
 
-timers.setTimout(empty, 60000);
+timers.setTimeout(empty, 60000);
 
 module.exports = app;
