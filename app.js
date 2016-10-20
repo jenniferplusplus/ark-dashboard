@@ -4,13 +4,19 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var timers = require('timers');
+
 var basepath = require('./config.json').ui.basePath || '/';
 
+// Routes
 var routes = require('./routes/index');
 var status = require('./routes/status');
 var middleware = require('./routes/middleware');
 var start = require('./routes/start');
 var restart = require('./routes/restart');
+
+// Background Processes
+var empty = require('./background/empty');
 
 var app = express();
 
@@ -58,5 +64,6 @@ app.use(function(err, req, res, next) {
   res.send(err.message);
 });
 
+timers.setTimout(empty, 60000);
 
 module.exports = app;

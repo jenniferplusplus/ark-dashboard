@@ -2,7 +2,8 @@
   "server": {
     "serviceName": "",
     "serviceManager": "ark-server-tools",
-    "serviceManagerPath": "/usr/local/bin/"
+    "serviceManagerPath": "/usr/local/bin/",
+    "serviceEmptyTime": 600
   },
   "ui": {
     "address": "localhost",
