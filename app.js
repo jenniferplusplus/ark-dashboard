@@ -64,6 +64,7 @@ app.use(function(err, req, res, next) {
   res.send(err.message);
 });
 
-timers.setTimeout(empty, 60000);
+// Starting background tasks
+timers.setInterval(empty, 60000);
 
 module.exports = app;
