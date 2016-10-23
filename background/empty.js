@@ -3,10 +3,9 @@
 var config = require('../config.json');
 var timers = require('timers');
 var service = require('../services/' + config.server.serviceManager);
+var pendingStop = false;
 
 module.exports = function stopOnEmpty() {
-  var pendingStop = false;
-
   if(pendingStop){
     return;
   }
