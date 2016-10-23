@@ -22,10 +22,10 @@ module.exports = function stopOnEmpty() {
     });
 
   function stop() {
-    service.serviceStatus()
+    return service.serviceStatus()
       .then(function stop(status){
         if((+status.numberOfPlayers) < 1){
-          service.stop();
+          service.serviceStop();
           console.log(status);
           console.log('No players connected, shutting down now');
         }
