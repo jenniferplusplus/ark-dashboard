@@ -10,8 +10,8 @@ function sessionManager(req, res, next){
     next();
     return;
   }
-  var hash = crypto.createHash(config.hashAlgorithm);
-  hash.update(req.session.id + config.passphrase);
+  var hash = crypto.createHash(config.security.hashAlgorithm);
+  hash.update(req.session.id + config.security.passphrase);
   req.session.authKey = hash.digest('hex');
   next();
 }
@@ -27,7 +27,7 @@ function sessionAuth(req, res, next){
 }
 
 router.use(session({
-  secret: config.passkey,
+  secret: config.security.sessionKey,
   unset: 'destroy',
   resave: false,
   saveUninitialized: false,

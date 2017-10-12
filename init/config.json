@@ -1,0 +1,18 @@
+{
+  "server": {
+    "serviceName": "",
+    "serviceManager": "ark-server-tools",
+    "serviceManagerPath": "/usr/local/bin/",
+    "serviceEmptyTime": 600
+  },
+  "ui": {
+    "address": "localhost",
+    "basePath": "/ark",
+    "title": "Your Page Title Here"
+  },
+  "security": {
+    "sessionKey": "this is a secret",
+    "passphrase": "",
+    "hashAlgorithm": "sha1"
+  }
+}

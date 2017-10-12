@@ -4,13 +4,19 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var basepath = require('./config.json').basePath || '/';
+var timers = require('timers');
 
+var basepath = require('./config.json').ui.basePath || '/';
+
+// Routes
 var routes = require('./routes/index');
-//var users = require('./routes/users');
 var status = require('./routes/status');
 var middleware = require('./routes/middleware');
 var start = require('./routes/start');
+var restart = require('./routes/restart');
+
+// Background Processes
+var empty = require('./background/empty');
 
 var app = express();
 
@@ -18,8 +24,6 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -31,7 +35,7 @@ app.use(basepath, middleware);
 app.use(basepath, routes);
 app.use(basepath + '/status', status);
 app.use(basepath + '/start', start);
-app.use(basepath + '/restart', require('./routes/restart'));
+app.use(basepath + '/restart', restart);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -46,23 +50,21 @@ app.use(function(req, res, next) {
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
+    console.error(err.message);
     res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
+    res.json(err);
   });
 }
 
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
+  console.error(err.messagge);
   res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+  res.send(err.message);
 });
 
+// Starting background tasks
+timers.setInterval(empty, 60000);
 
 module.exports = app;
